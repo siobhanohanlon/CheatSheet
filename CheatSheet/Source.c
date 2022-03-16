@@ -57,6 +57,7 @@ void main()
 void fileAccess()
 {
 	int num = 5;
+	int numInputs, readNum;
 
 	//Object of File
 	FILE* newFile;
@@ -72,6 +73,37 @@ void fileAccess()
 
 	//Close File
 	fclose(newFile);
+
+	//Read from file
+	newFile = fopen("newFile.txt", "r");
+
+	//Check if File can be Opened
+	if (newFile == NULL)
+	{
+		printf("Sorry the Customer File could not be opened!!!\n");
+
+		//Exit
+		exit(0);
+	}
+
+	else
+	{
+		//Read to end of file
+		while (!feof(newFile))
+		{
+			//Count how many Lines
+			numInputs = fscanf(newFile, "Write here \nNumber %d", &readNum);
+
+			//Display according to numInputs
+			if (numInputs == 5)
+			{
+				printf("Write here \nNumber %d", readNum);
+			}
+		}
+
+		//Close file
+		fclose(newFile);
+	}
 }
 
 void pointers(structName* pointr, int size)
@@ -137,6 +169,4 @@ void pointers(structName* pointr, int size)
 			scanf("%s", &(*(pointr + i)).name);
 		}
 	}
-
-
 }
